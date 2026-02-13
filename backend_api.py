@@ -27,7 +27,9 @@ app = FastAPI(
 # connect frontend and backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-weather-forecast-orcin.vercel.app",],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -320,4 +322,5 @@ def weather_endpoint(city: str = Query(..., description="City or place name to f
         "datasetSize": len(historical_df),
     }
     return response
+
 
