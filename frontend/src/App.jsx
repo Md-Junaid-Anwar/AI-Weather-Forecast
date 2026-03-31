@@ -15,7 +15,6 @@ import {
 import './App.css';
 
 const defaultCity = 'New Delhi';
-const API_BASE = "https://ai-weather-forecast-zwyp.onrender.com"
 
 const weatherCodeMap = {
   0: { label: 'Clear sky', tone: 'sunny' },
@@ -228,12 +227,11 @@ function App() {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE}/api/weather?city=${encodeURIComponent(cityName)}`);
+      const response = await fetch(`/api/weather?city=${encodeURIComponent(cityName)}`);
       if (!response.ok) {
         const message = await response.text();
         throw new Error(message || 'Backend weather service unavailable.');
       }
-      
       const data = await response.json();
       setWeatherData(data);
       setIsLive(true);
@@ -395,10 +393,10 @@ function App() {
           </GlassCard>
         </section>
 
-        <section className="grid grid-trends">
-          <GlassCard>
+        <section className="grid grid-trends mobile-only">
+          <GlassCard className="hourly-trends">
             <div className="section-head">
-              <h3>Hourly glide</h3>
+              <h3 id='smart'>Hourly glide</h3>
             </div>
             <div className="hourly-track">
               {hourlyData.map((point) => (
@@ -412,7 +410,7 @@ function App() {
 
           <GlassCard>
             <div className="section-head">
-              <h3>Smart recommendations</h3>
+              <h3 id='smart'>Smart recommendations</h3>
             </div>
             <div className="recommendations">
               {recommendations.map((tip) => (

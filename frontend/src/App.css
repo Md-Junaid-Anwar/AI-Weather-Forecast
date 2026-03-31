@@ -472,6 +472,20 @@ body {
     width: 100%;
   }
 
+  .search-button{
+    padding: 0.5rem 1rem;
+    margin-left: -100px;
+  }
+
+  .mobile-only{
+    display: block;
+  }
+  .hourly-trends{
+    margin-bottom: 2rem;
+  }
+  #smart{
+    margin-bottom: 1rem;
+  }
   .grid-historical,
   .grid-trends {
     grid-template-columns: 1fr;
