@@ -15,6 +15,7 @@ import {
 import './App.css';
 
 const defaultCity = 'New Delhi';
+const API_BASE = "https://ai-weather-forecast-zwyp.onrender.com"
 
 const weatherCodeMap = {
   0: { label: 'Clear sky', tone: 'sunny' },
@@ -227,11 +228,12 @@ function App() {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`/api/weather?city=${encodeURIComponent(cityName)}`);
+      const response = await fetch(`${API_BASE}/api/weather?city=${encodeURIComponent(cityName)}`);
       if (!response.ok) {
         const message = await response.text();
         throw new Error(message || 'Backend weather service unavailable.');
       }
+      
       const data = await response.json();
       setWeatherData(data);
       setIsLive(true);
